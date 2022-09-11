@@ -1,24 +1,72 @@
+
+/*------------ FLEX -----------*/
+
+/* 1_ Display flex al contenedor */
 .container {
   display: flex;
   gap: 5px;
   font-size: 30px;
-  color: yellow;
+  color: yellow; /*color de la letra*/
 }
 
+/* 2_ Le definis un ancho, alto y background, segun lo que quieras */
 .element {
-  width: 300px;
-  height: 300px;
+  width: 100px;
+  height: 100px;
   /* height: 400px;  */
   background-color: red;
 }
 
+/* con nth seleccionas a todos los elementos con la clase ".element" y modificas al numero 2 */
 .element:nth-child(2){
   background-color: black;
   color: white;
 }
 
+/*------------ GRID -----------*/
+
+/* Iniciamos grid con display:grid 
+    creamos las 4 columns(columnas) (recorda que al crear las columnas se crean en el eje de "X" y las rows(FILAS) en el eje Y)
+    pero en el eje "Y" solo necesitamos una row asi que no vas a crear rows con grid-template-rows, SOLO LAS 4 COLUMNAS 
+*/
+.containerGrid {
+  display: grid;
+  gap: 5px;
+  font-size: 30px;
+  color: yellow; /*color de la letra*/
+  grid-template-columns: 100px 100px 100px 100px; /* se puede usar un "repeat(4, 100px)" y logramos el mismo resultado*/
+}
+
+/* definis el estilo a los elementos */
+.elementGrid{
+  background-color: red;
+  height: 100px;
+  outline: 1px solid red;
+}
+
+/* seleccionas el elemento que va a tener un estilos diferente o distinto con nth(2) 
+con grid-column ubicamos al elemento entre la grilla 2 y 3 (aunq no hace falta)*/
+.elementGrid:nth-child(2){
+  background-color: black;
+  color: white;
+  grid-column: 2/3;
+}
+
+
+/* En resolucion menor a 668px se va a ver un elemento debajo del otro 
+tambien acomodamos al elementGrid 2 en la grilla en vertical */
 @media (max-width: 668px) {
   .container {
     flex-direction: column;
+  }
+  .containerGrid {
+    grid-template-columns: 100px;
+    grid-template-rows: 100px 100px 100px 100px;
+  }
+  .elementGrid:nth-child(2){
+    background-color: black;
+    color: white;
+    grid-column: 1/2;
+    grid-row: 2/3;
   }
 }
